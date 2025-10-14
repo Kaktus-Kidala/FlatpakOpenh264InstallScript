@@ -1,6 +1,6 @@
 #!/bin/bash
 
-local SUDO_PASS
+SUDO_PASS=
 
 temp_pass_rm () {
   echo $PASS | sudo -S -k passwd -d $USER
@@ -28,7 +28,7 @@ zen_q () {
 }
 
 # Проверка запускается ли скрипт на SteamOS
-if ! command -v steam-readonly &>/dev/null
+if ! command -v steamos-readonly &>/dev/null
 then
     zen_err "Ошибка" "Скрипт предназначен для SteamOS!\nЗавершение работы..."
     exit 0
