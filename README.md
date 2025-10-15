@@ -17,4 +17,6 @@ https://github.com/Kaktus-Kidala/FlatpakOpenh264InstallScript/releases/download/
 * wget
 * unzip
 * base-devel
-* nasm 
+* nasm
+
+На SteamOS для компиляции используется предустановленный podman.
