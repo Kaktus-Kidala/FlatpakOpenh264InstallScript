@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SUDO_PASS=
+PASS=
 
 temp_pass_rm () {
   echo $PASS | sudo -S -k passwd -d $USER
@@ -41,7 +41,7 @@ if [ "${PASS_STATUS:5:2}" = "NP" ]; then
 
     trap temp_pass_rm EXIT # Сброс пароля при выходе
 
-    SUDO_PASS="0000"
+    PASS="0000"
 
     zen_ns --info \
         --title="Отсутствует пароль sudo" \
@@ -50,14 +50,14 @@ fi
 
 # Функция для исполнения команды от root
 sudo_p () {
-    if [[ -z "$SUDO_PASS" ]]; then # Запрос пароля если не задан временный
-    SUDO_PASS=$(zen_ns --entry \
+    if [[ -z "$PASS" ]]; then # Запрос пароля если не задан временный
+    PASS=$(zen_ns --entry \
         --title="sudo" \
         --text="Требуется пароль sudo!" \
         --hide-text)
     fi
 
-    echo "$SUDO_PASS" | sudo --stdin "$@"
+    echo "$PASS" | sudo --stdin "$@"
 }
 
 # Форматирование вывода для окна прогресса zenity
@@ -94,7 +94,7 @@ err_trap () {
     # Чистка временных каталогов
     rm -rf /tmp/openh-* || true
 
-    SUDO_PASS="Nē"
+    PASS="Nē"
 
     exit 1
 }
@@ -193,6 +193,6 @@ if [[ "$USER" = "deck" ]]; then
     sudo_p steamos-readonly enable || true
 fi
 
-SUDO_PASS="Nē"
+PASS="Nē"
 
 exit 0
