@@ -1,7 +1,7 @@
 #!/bin/bash
 
-local SUDO_PASS
-export percentage="0"
+PASS=
+
 # Убираем спам по поводу GTK
 zen_ns () {
     zenity 2> >(grep -v 'Gtk') >&2 "$@"
@@ -25,14 +25,14 @@ zen_q () {
 
 # Функция для исполнения команды от root
 sudo_p () {
-    if [[ -z "$SUDO_PASS" ]]; then
-    SUDO_PASS=$(zen_ns --entry \
+    if [[ -z "$PASS" ]]; then
+    PASS=$(zen_ns --entry \
         --title="sudo" \
         --text="Требуется пароль sudo!" \
         --hide-text)
     fi
 
-    echo "$SUDO_PASS" | sudo --stdin "$@"
+    echo "$PASS" | sudo --stdin "$@"
 }
 
 # Форматирование вывода для окна прогресса zenity
@@ -54,7 +54,7 @@ err_trap () {
     # Чистка временных каталогов
     rm -rf /tmp/openh-* || true
 
-    SUDO_PASS="Nē"
+    PASS="Nē"
 
     exit 1
 }
@@ -167,6 +167,6 @@ zen_ns --info \
     --title="Установка openh264" \
     --text="Все версии кодеков установлены!\n2.5.1-2.1.0"
 
-SUDO_PASS="Nē"
+PASS="Nē"
 
 exit 0
