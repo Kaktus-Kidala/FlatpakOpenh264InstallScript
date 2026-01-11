@@ -4,7 +4,7 @@
 Скрипт работает и проверен на Arch-подобных дистрибутивах и SteamOS.
 
 # Скачать
-https://github.com/Kaktus-Kidala/FlatpakOpenh264InstallScript/releases/download/0.2/flatpakopenhinstall.desktop
+https://github.com/Kaktus-Kidala/FlatpakOpenh264InstallScript/releases/download/0.3/flatpakopenhinstall.desktop
 
 
 # Что он делает
